@@ -1,0 +1,14 @@
+[Unit]
+Description=soothing sounds to help your baby sleep
+After=sound.target network.target avahi-daemon.service
+Requires=sound.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/wombsounds
+ExecStop=/bin/kill -1 $MAINPID
+PIDFile=/var/run/wombsounds.pid
+Restart=always
+
+[Install]
+WantedBy=sysinit.target
